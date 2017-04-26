@@ -120,8 +120,7 @@ void parse_file ( char * filename,
 	     xvals+1, yvals+1, zvals+1);
       struct matrix * polygonsTemp;
       polygonsTemp = new_matrix(4, 4);
-      add_box(polygonsTemp, xvals[0], yvals[0], zvals[0],
-	      xvals[1], yvals[1], zvals[1]);
+      add_box(polygonsTemp, xvals[0], yvals[0], zvals[0], xvals[1], yvals[1], zvals[1]);
       matrix_mult(cs->data[ cs->top ], polygonsTemp);
       draw_polygons(polygonsTemp, s, c);
       free_matrix( polygonsTemp );
@@ -136,7 +135,7 @@ void parse_file ( char * filename,
 	     xvals, yvals, zvals, &r);
       struct matrix * polygonsTemp;
       polygonsTemp = new_matrix(4, 4);
-      add_sphere( edges, xvals[0], yvals[0], zvals[0], r, step);
+      add_sphere(polygonsTemp, xvals[0], yvals[0], zvals[0], r, step);
       matrix_mult(cs->data[ cs->top ], polygonsTemp);
       draw_polygons(polygonsTemp, s, c);
       free_matrix( polygonsTemp );
@@ -150,7 +149,7 @@ void parse_file ( char * filename,
 	     xvals, yvals, zvals, &r, &r1);
       struct matrix * polygonsTemp;
       polygonsTemp = new_matrix(4, 4);
-      add_torus( edges, xvals[0], yvals[0], zvals[0], r, r1, step);
+      add_torus(polygonsTemp, xvals[0], yvals[0], zvals[0], r, r1, step);
       matrix_mult(cs->data[ cs->top ], polygonsTemp);
       draw_polygons(polygonsTemp, s, c);
       free_matrix( polygonsTemp );
