@@ -189,13 +189,14 @@ void parse_file ( char * filename,
 
     else if ( strncmp(line, "scale", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
-      //printf("SCALE\t%s", line);
+      printf("SCALE\t%s", line);
       sscanf(line, "%lf %lf %lf",
 	     xvals, yvals, zvals);
       /* printf("%lf %lf %lf\n", */
       /* 	xvals[0], yvals[0], zvals[0]); */
       tmp = make_scale( xvals[0], yvals[0], zvals[0]);
       matrix_mult(tmp, transform);
+      matrix_mult(transform, cs->data[ cs->top ]);
     }//end scale
 
     else if ( strncmp(line, "move", strlen(line)) == 0 ) {
@@ -207,6 +208,7 @@ void parse_file ( char * filename,
       /* 	xvals[0], yvals[0], zvals[0]); */
       tmp = make_translate( xvals[0], yvals[0], zvals[0]);
       matrix_mult(tmp, transform);
+      matrix_mult(transform, cs->data[ cs->top ]);
     }//end translate
 
     else if ( strncmp(line, "rotate", strlen(line)) == 0 ) {
@@ -225,6 +227,7 @@ void parse_file ( char * filename,
 	tmp = make_rotZ( theta );
 
       matrix_mult(tmp, transform);
+      matrix_mult(transform, cs->data[ cs->top ]);
     }//end rotate
 
     else if ( strncmp(line, "clear", strlen(line)) == 0 ) {
