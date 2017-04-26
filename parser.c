@@ -118,8 +118,14 @@ void parse_file ( char * filename,
       sscanf(line, "%lf %lf %lf %lf %lf %lf",
 	     xvals, yvals, zvals,
 	     xvals+1, yvals+1, zvals+1);
-      add_box(edges, xvals[0], yvals[0], zvals[0],
+      struct matrix * polygonsTemp;
+      polygonsTemp = new_matrix(4, 4);
+      add_box(polygonsTemp, xvals[0], yvals[0], zvals[0],
 	      xvals[1], yvals[1], zvals[1]);
+      matrix_mult(cs->data[ cs->top ], polygonsTemp);
+      draw_polygons(polygonsTemp, s, c);
+      free_matrix( polygonsTemp );
+
     }//end of box
 
     else if ( strncmp(line, "sphere", strlen(line)) == 0 ) {
@@ -128,7 +134,12 @@ void parse_file ( char * filename,
 
       sscanf(line, "%lf %lf %lf %lf",
 	     xvals, yvals, zvals, &r);
+      struct matrix * polygonsTemp;
+      polygonsTemp = new_matrix(4, 4);
       add_sphere( edges, xvals[0], yvals[0], zvals[0], r, step);
+      matrix_mult(cs->data[ cs->top ], polygonsTemp);
+      draw_polygons(polygonsTemp, s, c);
+      free_matrix( polygonsTemp );
     }//end of sphere
 
     else if ( strncmp(line, "torus", strlen(line)) == 0 ) {
@@ -137,7 +148,12 @@ void parse_file ( char * filename,
 
       sscanf(line, "%lf %lf %lf %lf %lf",
 	     xvals, yvals, zvals, &r, &r1);
+      struct matrix * polygonsTemp;
+      polygonsTemp = new_matrix(4, 4);
       add_torus( edges, xvals[0], yvals[0], zvals[0], r, r1, step);
+      matrix_mult(cs->data[ cs->top ], polygonsTemp);
+      draw_polygons(polygonsTemp, s, c);
+      free_matrix( polygonsTemp );
     }//end of torus
 
     else if ( strncmp(line, "circle", strlen(line)) == 0 ) {
