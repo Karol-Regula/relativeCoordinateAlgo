@@ -75,7 +75,7 @@ void parse_file ( char * filename,
   clear_screen(s);
 
   struct stack * cs = new_stack();
-  print_stack(cs);
+  //print_stack(cs);
 
   color c;
   c.red = 100;
@@ -102,18 +102,18 @@ void parse_file ( char * filename,
     double step = 0.01;
 
     if ( strncmp(line, "push", strlen(line)) == 0 ) {
-      printf("PUSH\t%s\n", line);
+      //printf("PUSH\t%s\n", line);
       push(cs);
     }//end of push
 
     if ( strncmp(line, "pop", strlen(line)) == 0 ) {
-      printf("POP\t%s\n", line);
+      //printf("POP\t%s\n", line);
       pop(cs);
     }//end of pop
 
     if ( strncmp(line, "box", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
-      printf("BOX\t%s", line);
+      //printf("BOX\t%s", line);
 
       sscanf(line, "%lf %lf %lf %lf %lf %lf",
 	     xvals, yvals, zvals,
@@ -279,8 +279,8 @@ void parse_file ( char * filename,
       //draw_polygons(edges, s, c);
       save_extension(s, line);
     }//end save
-    print_stack(cs);
-    printf("-----\n");
+    //print_stack(cs);
+    //printf("-----\n");
 
   }
   free_stack(cs);
