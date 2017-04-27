@@ -1,0 +1,71 @@
+#BODY
+push
+rotate
+y -30
+rotate
+x -60
+move
+100 400 0
+box
+-100 125 50 200 250 100
+#MORE1
+push
+move
+80 150 0
+sphere
+0 0 0 50
+pop
+#MORE2
+push
+move
+-80 150 0
+sphere
+0 0 0 50
+pop
+#MORE1
+push
+move
+80 -150 0
+sphere
+0 0 0 50
+pop
+#MORE2
+push
+move
+-80 -150 0
+sphere
+0 0 0 50
+pop
+#MORE1
+push
+move
+120 50 0
+sphere
+0 0 0 12
+pop
+#MORE2
+push
+move
+120 -50 0
+sphere
+0 0 0 12
+pop
+#TOP
+push
+rotate
+x 90
+move
+-50 -80 -150
+torus
+0 0 0 10 50
+pop
+#TOP2
+push
+rotate
+x 90
+move
+-50 -80 -150
+sphere
+0 0 0 10
+pop
+display
